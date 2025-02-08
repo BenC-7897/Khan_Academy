@@ -1,0 +1,34 @@
+CREATE TABLE famous_person (id INTEGER PRIMARY KEY AUTOINCREMENT, author_name TEXT, age_of_death INTEGER);
+INSERT INTO famous_person (author_name, age_of_death) VALUES ("John Le Carré", 89);
+INSERT INTO famous_person (author_name, age_of_death) VALUES ("Maya Angelou", 86);
+INSERT INTO famous_person (author_name, age_of_death) VALUES ("Seamus Heaney", 74); 
+INSERT INTO famous_person (author_name, age_of_death) VALUES ("Harper Lee", 90);
+INSERT INTO famous_person (author_name, age_of_death) VALUES ("Sylvia Plath", 32);
+INSERT INTO famous_person (author_name, age_of_death) VALUES ("Agatha Christie", 85); 
+INSERT INTO famous_person (author_name, age_of_death) VALUES ("C.S Lewis", 64); 
+INSERT INTO famous_person (author_name, age_of_death) VALUES ("Kurt Schork", 52); 
+INSERT INTO famous_person (author_name, age_of_death) VALUES ("Bernard Fall", 41); 
+INSERT INTO famous_person (author_name, age_of_death) VALUES ("Li Zhisui", 75); 
+INSERT INTO famous_person (author_name, age_of_death) VALUES ("J.R.R Tolkein", 81); 
+INSERT INTO famous_person (author_name, age_of_death) VALUES ("Gladys Aylward", 67);
+
+CREATE TABLE works (id INTEGER PRIMARY KEY AUTOINCREMENT, famous_person_id Integer, book_name TEXT); 
+INSERT INTO works (famous_person_id, book_name) VALUES (1, "A murder of quality");
+INSERT INTO works (famous_person_id, book_name) VALUES (2, "I know why the caged bird sings"); 
+INSERT INTO works (famous_person_id, book_name) VALUES (3, "Door into the Dark"); 
+INSERT INTO works (famous_person_id, book_name) VALUES (4, "To kill a mockingbird");
+INSERT INTO works (famous_person_id, book_name) VALUES (5, "Ariel"); 
+INSERT INTO works (famous_person_id, book_name) VALUES (6, "Poirot");
+INSERT INTO works (famous_person_id, book_name) VALUES (7, "The Lion, the witch and the wardrobe"); 
+INSERT INTO works (famous_person_id, book_name) VALUES (8, "Romeo and Juliet of Sarajevo"); 
+INSERT INTO works (famous_person_id, book_name) VALUES (9, "Hell in a very small place"); 
+INSERT INTO works (famous_person_id, book_name) VALUES (10, "The Private Life of Chairman Mao"); 
+INSERT INTO works (famous_person_id, book_name) VALUES (11, "Lord of the Rings"); 
+INSERT INTO works (famous_person_id, book_name) VALUES (12, "The little woman"); 
+
+SELECT famous_person.author_name, works.book_name FROM famous_person JOIN works ON famous_person.id = works.famous_person_id;
+SELECT * FROM famous_person;
+SELECT * FROM famous_person;
+SELECT * FROM famous_person;
+SELECT * FROM famous_person;
+SELECT * FROM works;

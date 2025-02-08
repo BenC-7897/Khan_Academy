@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Spin-off of "Project: Interactive slideshow"</title>
+        <style>
+        body {
+  background-color: black;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+  border: 3px solid gray;
+}
+
+button {
+  border: 3px solid gray;
+  border-radius: 30%;
+  margin-top: 10px;
+  background-color: black;
+  color: gray;
+  font-size: 16px;
+}
+
+#next {
+  float: right;
+}
+        </style>
+    </head>
+    <body>
+    
+    <br>
+    <img src="https://www.kasandbox.org/programming-images/food/mushroom.png" width="400" alt="Mushrooms">
+    <button type="button">Next ➡</button>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+    var images = [
+  "https://www.kasandbox.org/programming-images/food/mushroom.png",
+  "https://www.kasandbox.org/programming-images/food/thumbs/tomatoes.png",
+  "https://www.kasandbox.org/programming-images/food/thumbs/strawberries.png",
+  "https://www.kasandbox.org/programming-images/food/thumbs/potatoes.png",
+  "https://www.kasandbox.org/programming-images/food/thumbs/grapes.png",
+  "https://www.kasandbox.org/programming-images/food/thumbs/fruits.png"
+];
+
+var alts = [
+  "mushrooms",
+  "tomatoes",
+  "strawberries",
+  "potatoes",
+  "grapes",
+  "tropical fruits"
+];
+$("button[type=button]").attr("id", "next");
+$("<button>")
+  .attr("id", "prev")
+  .text("⬅  Prev")
+  .appendTo("body");
+$("img").hide();
+$("img").slideDown(1500);
+var i = 0;
+$("#next").on("click", function() {
+  console.log("next");
+  i = (i + 1) % images.length;
+  console.log(i);
+  $("img").attr("src", images[i]);
+  $("img").attr("alt", alts[i]);
+  console.log(alts[i]);
+  $("img").hide();
+  $("img").slideDown(1500);
+});
+$("#prev").on("click", function() {
+  console.log("prev");
+  if (i <= 0) {
+    i = images.length - 1;
+    $("img").attr("src", images[i]);
+    $("img").attr("alt", alts[i]);
+    $("img").hide();
+    $("img").fadeIn(1500);
+  } else {
+    i = i - 1;
+    $("img").attr("src", images[i]);
+    $("img").attr("alt", alts[i]);
+    $("img").hide();
+    $("img").fadeIn(1500);
+  }
+});
+    $("img").hide();
+    $("img").slideDown();
+    </script> 
+    
+    </body>
+</html>

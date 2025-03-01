@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Motorway LED Streetlight Scene</title>
+    <script type="text/javascript" src="https://www.x3dom.org/download/dev/x3dom.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://www.x3dom.org/download/dev/x3dom.css"/>
+</head>
+<body>
+<X3D width="1000px" height="600px">
+    <Scene>
+        <!-- Scene background colour -->
+        <Background DEF="Background_Scene" skyColor="0.6 0.8 1"></Background> <!-- Light blue sky colour-->
+        <DirectionalLight DEF="Day_Light" direction="-1 -1 -0.5" intensity="1"></DirectionalLight> <!-- Light coming from a specific direction-->
+        <PointLight DEF="LED_Light" location="0 6 0" intensity="0" radius="15" color="1 1 1"></PointLight> <!-- White light shining at (0, 6, 0) with a radius of 15 units-->
+
+        <!-- Four-Lane Motorway -->
+        <Transform translation="0 0 0">
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="0.1 0.1 0.1" specularColor="0.5 0.5 0.5" shininess="1"></Material> <!-- Road surface properties-->
+                </Appearance>
+                <Box size="20 0.1 40"></Box> <!-- Motorway dimensions-->
+            </Shape>
+        </Transform>
+
+        <!-- White Lane Markings -->
+        <Transform translation="-5 0.05 0"> <!-- Left lane marking-->
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="1 1 1"></Material> <!-- White left lane-->
+                </Appearance>
+                <Box size="0.2 0.05 40"></Box>
+            </Shape>
+        </Transform>
+        <Transform translation="5 0.05 0"> <!-- Right lane marking-->
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="1 1 1"></Material> <!-- White right lane-->
+                </Appearance>
+                <Box size="0.2 0.05 40"></Box>
+            </Shape>
+        </Transform>
+
+        <!-- Green Central Divider -->
+        <Transform translation="0 0.02 0"> <!-- Translates the shape slightly upwards-->
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="0 0.5 0"></Material> <!-- Green material-->
+                </Appearance>
+                <Box size="2 0.1 40"></Box> <!-- Box definition-->
+            </Shape>
+        </Transform>
+
+        <!-- LED Streetlight -->
+        <Transform translation="0 3 0">
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="0.3 0.3 0.3"></Material> <!-- Grey material-->
+                </Appearance>
+                <Cylinder height="6" radius="0.2"></Cylinder> <!-- The streetlight pole-->
+            </Shape>
+
+            <Transform translation="-1.5 3 0"> <!-- LED streetlight left arm-->
+                <Shape>
+                    <Appearance>
+                        <Material diffuseColor="0.3 0.3 0.3"></Material> <!-- Grey material-->
+                    </Appearance>
+                    <Box size="3 0.2 0.2"></Box> <!-- Create the LED light arm-->
+                </Shape>
+            </Transform>
+            <Transform translation="1.5 3 0"> <!-- LED streetlight right arm-->
+                <Shape>
+                    <Appearance>
+                        <Material diffuseColor="0.3 0.3 0.3"></Material> <!-- Grey material-->
+                    </Appearance>
+                    <Box size="3 0.2 0.2"></Box> <!-- Create the LED light arm-->
+                </Shape>
+            </Transform>
+
+            <Transform translation="-3 3 0"> <!-- Left LED light-->
+                <Shape>
+                    <Appearance>
+                        <Material diffuseColor="1 1 1" emissiveColor="1 1 1"></Material> <!-- White LED light that glows-->
+                    </Appearance>
+                    <Box size="0.5 0.2 0.2"></Box> <!-- Create the LED light-->
+                </Shape>
+                <Transform translation="0 -0.2 0">
+                    <Shape>
+                        <Appearance>
+                            <Material diffuseColor="1 1 1" emissiveColor="1 1 1"></Material> <!-- White LED light that glows-->
+                        </Appearance>
+                        <IndexedFaceSet coordIndex="0 1 2 -1"> <!-- Three vertices-->
+                            <Coordinate point="0 0.2 0, -0.3 -0.2 0.1, 0.3 -0.2 0.1"></Coordinate> <!-- Triangular shape light-->
+                        </IndexedFaceSet>
+                    </Shape>
+                </Transform>
+            </Transform>
+            <Transform translation="3 3 0"> <!-- Right LED light-->
+                <Shape>
+                    <Appearance>
+                        <Material diffuseColor="1 1 1" emissiveColor="1 1 1"></Material> <!-- White LED light that glows-->
+                    </Appearance>
+                    <Box size="0.5 0.2 0.2"></Box> <!-- Create the LED light-->
+                </Shape>
+                <Transform translation="0 -0.2 0">
+                    <Shape>
+                        <Appearance>
+                            <Material diffuseColor="1 1 1" emissiveColor="1 1 1"></Material> <!-- White LED light that glows-->
+                        </Appearance>
+                        <IndexedFaceSet coordIndex="0 1 2 -1"> <!-- Three vertices-->
+                            <Coordinate point="0 0.2 0, -0.3 -0.2 0.1, 0.3 -0.2 0.1"></Coordinate> <!-- Triangular shape light-->
+                        </IndexedFaceSet>
+                    </Shape>
+                </Transform>
+            </Transform>
+        </Transform>
+
+        <!-- First Car -->
+        <Transform DEF="First_Car" translation="3 0.3 -15" rotation="0 1 0 1.5708"> <!-- Rotate 90 degrees clockwise-->
+            <Transform>
+                <Shape>
+                    <Appearance>
+                        <Material diffuseColor="1 0 0"></Material> <!-- Red car body-->
+                    </Appearance>
+                    <Box size="3 0.8 1.5"></Box> <!-- Car body shape and size-->
+                </Shape>
+
+                <!-- Car roof -->
+                <Transform translation="0 0.6 0">
+                    <Shape>
+                        <Appearance>
+                            <Material diffuseColor="1 0 0"></Material> <!-- Red roof-->
+                        </Appearance>
+                        <Box size="1.5 0.5 1.5"></Box> <!-- Car roof shape and size-->
+                    </Shape>
+                </Transform>
+
+                <!-- Car wheels -->
+                <Transform translation="-1 -0.4 0.6"> <!-- Front left wheel-->
+                    <Shape>
+                        <Appearance>
+                            <Material diffuseColor="0 0 0"></Material> <!-- Black wheel-->
+                        </Appearance>
+                        <Cylinder radius="0.3" height="0.15"></Cylinder> <!-- Wheel shape-->
+                    </Shape>
+                </Transform>
+                <Transform translation="1 -0.4 0.6"> <!-- Front right wheel-->
+                    <Shape>
+                        <Appearance>
+                            <Material diffuseColor="0 0 0"></Material> <!-- Black wheel-->
+                        </Appearance>
+                        <Cylinder radius="0.3" height="0.15"></Cylinder> <!-- Wheel shape-->
+                    </Shape>
+                </Transform>
+                <Transform translation="-1 -0.4 -0.6"> <!-- Rear left wheel-->
+                    <Shape>
+                        <Appearance>
+                            <Material diffuseColor="0 0 0"></Material> <!-- Black wheel-->
+                        </Appearance>
+                        <Cylinder radius="0.3" height="0.15"></Cylinder> <!-- Wheel shape-->
+                    </Shape>
+                </Transform>
+                <Transform translation="1 -0.4 -0.6"> <!-- Rear right wheel-->
+                    <Shape>
+                        <Appearance>
+                            <Material diffuseColor="0 0 0"></Material> <!-- Black wheel-->
+                        </Appearance>
+                        <Cylinder radius="0.3" height="0.15"></Cylinder> <!-- Wheel shape-->
+                    </Shape>
+                </Transform>
+            </Transform>
+        </Transform>
+
+        <!-- Second Car -->
+        <Transform DEF="Second_Car" translation="-3 0.3 15" rotation="0 1 0 -1.5708"> <!-- Rotate 90 degrees anticlockwise-->
+            <Transform>
+                <Shape>
+                    <Appearance>
+                        <Material diffuseColor="0 0 1"></Material> <!-- Blue car body-->
+                    </Appearance>
+                    <Box size="3 0.8 1.5"></Box> <!-- Car body shape and size-->
+                </Shape>
+
+                <!-- Car roof -->
+                <Transform translation="0 0.6 0">
+                    <Shape>
+                        <Appearance>
+                            <Material diffuseColor="0 0 1"></Material> <!-- Blue roof -->
+                        </Appearance>
+                        <Box size="1.5 0.5 1.5"></Box> <!-- Car roof shape and size-->
+                    </Shape>
+                </Transform>
+
+                <!-- Car wheels -->
+                <Transform translation="-1 -0.4 0.6"> <!-- Front left wheel-->
+                    <Shape>
+                        <Appearance>
+                            <Material diffuseColor="0 0 0"></Material> <!-- Black wheel-->
+                        </Appearance>
+                        <Cylinder radius="0.3" height="0.15"></Cylinder> <!-- Wheel shape-->
+                    </Shape>
+                </Transform>
+                <Transform translation="1 -0.4 0.6"> <!-- Front right wheel-->
+                    <Shape>
+                        <Appearance>
+                            <Material diffuseColor="0 0 0"></Material> <!-- Black wheel-->
+                        </Appearance>
+                        <Cylinder radius="0.3" height="0.15"></Cylinder> <!-- Wheel shape-->
+                    </Shape>
+                </Transform>
+                <Transform translation="-1 -0.4 -0.6"> <!-- Rear left wheel-->
+                    <Shape>
+                        <Appearance>
+                            <Material diffuseColor="0 0 0"></Material> <!-- Black wheel-->
+                        </Appearance>
+                        <Cylinder radius="0.3" height="0.15"></Cylinder> <!-- Wheel shape-->
+                    </Shape>
+                </Transform>
+                <Transform translation="1 -0.4 -0.6"> <!-- Rear right wheel-->
+                    <Shape>
+                        <Appearance>
+                            <Material diffuseColor="0 0 0"></Material> <!-- Black wheel-->
+                        </Appearance>
+                        <Cylinder radius="0.3" height="0.15"></Cylinder> <!-- Wheel shape-->
+                    </Shape>
+                </Transform>
+            </Transform>
+        </Transform>
+
+        <!-- First Car animation -->
+        <TimeSensor DEF="First_Car_Timer" cycleInterval="5" loop="true"></TimeSensor> <!-- Time Sensor DEF="CarTimer"-->
+        <PositionInterpolator DEF="First_Car_Animation_Position" key="0 1" keyValue="3 0.3 -15, 3 0.3 15"></PositionInterpolator> <!--  First Car's movement-->
+        <ROUTE fromNode="First_Car_Timer" fromField="fraction_changed" toNode="First_Car_Animation_Position" toField="set_fraction"></ROUTE> <!-- Connect TimeSensor to the PositionInterpolator-->
+        <ROUTE fromNode="First_Car_Animation_Position" fromField="value_changed" toNode="First_Car" toField="translation"></ROUTE> <!-- Apply interpolated position to the first car's translation-->
+        <RotationInterpolator DEF="First_Car_Animation_Rotation" key="0 1" keyValue="0 1 0 0, 0 1 0 0"></RotationInterpolator> <!-- First Car's Rotation-->
+        <ROUTE fromNode="First_Car_Timer" fromField="fraction_changed" toNode="First_Car_Animation_Rotation" toField="set_fraction"></ROUTE> <!-- Connect TimeSensor to the RotationInterpolator-->
+        <ROUTE fromNode="First_Car_Animation_Rotation" fromField="value_changed" toNode="First_Car" toField="rotation"></ROUTE> <!-- Apply interpolated position to the first car's rotation-->
+
+        <!-- Second Car Animation -->
+        <TimeSensor DEF="Second_Car_Timer" cycleInterval="5" loop="true"></TimeSensor> <!-- Time Sensor DEF="CarTimer"-->
+        <PositionInterpolator DEF="Second_Car_Animation_Position" key="0 1" keyValue="-3 0.3 15, -3 0.3 -15"></PositionInterpolator> <!--  Second Car's movement-->
+        <ROUTE fromNode="Second_Car_Timer" fromField="fraction_changed" toNode="Second_Car_Animation_Position" toField="set_fraction"></ROUTE> <!-- Connect TimeSensor to the PositionInterpolator-->
+        <ROUTE fromNode="Second_Car_Animation_Position" fromField="value_changed" toNode="Second_Car" toField="translation"></ROUTE> <!-- Apply interpolated position to the second car's translation-->
+        <RotationInterpolator DEF="Second_Car_Animation_Rotation" key="0 1" keyValue="0 1 0 0, 0 1 0 0"></RotationInterpolator> <!-- Second Car's Rotation-->
+        <ROUTE fromNode="Second_Car_Timer" fromField="fraction_changed" toNode="Second_Car_Animation_Rotation" toField="set_fraction"></ROUTE> <!-- Connect TimeSensor to the RotationInterpolator-->
+        <ROUTE fromNode="Second_Car_Animation_Rotation" fromField="value_changed" toNode="Second_Car" toField="rotation"></ROUTE> <!-- Apply interpolated position to the second car's rotation-->
+
+        <!-- Toggle button between day and night -->
+        <button onclick="toggleScene()">Toggle Day/Night</button>
+        <script>
+            let isDay = true;
+            function toggleScene() {
+                let background = document.querySelector('Background');
+                let sunlight = document.querySelector('[DEF=Day_Light]');
+                let LEDLight = document.querySelector('[DEF=LED_Light]');
+
+                if (isDay) {
+                    background.setAttribute('skyColor', '0.1 0.1 0.3'); // Night sky
+                    sunlight.setAttribute('intensity', '0.2'); // Dim sunlight
+                    LEDLight.setAttribute('intensity', '1'); // LED on
+                } else {
+                    background.setAttribute('skyColor', '0.6 0.8 1'); // Day sky
+                    sunlight.setAttribute('intensity', '1'); // Full sunlight
+                    LEDLight.setAttribute('intensity', '0'); // LED off
+                }
+                isDay = !isDay;
+            }
+        </script>
+    </Scene>
+</X3D>
+</body>
+</html>
